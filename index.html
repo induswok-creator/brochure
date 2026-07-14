@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartPOS — Plans & Pricing Brochure</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --bronze: #cd7f32;
+    --silver: #a8a9ad;
+    --gold: #d4af37;
+    --emerald: #50c878;
+    --dark: #0b0b1a;
+    --card: #12122a;
+    --card2: #1a1a3e;
+    --text: #e0e0e0;
+    --muted: #7a7a9e;
+    --accent: #6c5ce7;
+    --accent2: #e94560;
+    --glow-bronze: rgba(205,127,50,0.15);
+    --glow-silver: rgba(168,169,173,0.15);
+    --glow-gold: rgba(212,175,55,0.15);
+    --glow-emerald: rgba(80,200,120,0.15);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at 50% 30%, #1e1050 0%, var(--dark) 70%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(from 0deg, transparent 0deg 8deg, rgba(108,92,231,0.03) 8deg 10deg);
+    animation: spin 120s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .cover > * { position: relative; z-index: 1; }
+  .cover-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover-logo {
+    font-size: 4em;
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 3.2em;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 0%, #a8a8ff 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .cover h2 {
+    font-size: 1.3em;
+    color: var(--muted);
+    font-weight: 400;
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  .cover-prices {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .cover-price-chip {
+    background: var(--card);
+    border: 1px solid #2a2a5a;
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 130px;
+  }
+  .cover-price-chip.bronze { border-top: 3px solid var(--bronze); }
+  .cover-price-chip.silver { border-top: 3px solid var(--silver); }
+  .cover-price-chip.gold { border-top: 3px solid var(--gold); }
+  .cover-price-chip.emerald { border-top: 3px solid var(--emerald); }
+  .cover-price-chip .icon { font-size: 1.4em; }
+  .cover-price-chip .name { font-weight: 700; font-size: 0.85em; margin: 4px 0; }
+  .cover-price-chip .price { font-size: 1.5em; font-weight: 800; }
+  .cover-price-chip .price span { font-size: 0.4em; color: var(--muted); font-weight: 400; }
+  .cover-cta {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .cover-cta:hover { transform: scale(1.05); transition: 0.2s; }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2a2a5a, transparent);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===== FOR WHO ===== */
+  .biz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .biz-card {
+    background: var(--card);
+    border: 1px solid #2a2a5a;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .biz-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .biz-card .emoji { font-size: 2.5em; margin-bottom: 10px; }
+  .biz-card h3 { font-size: 1.1em; margin-bottom: 6px; }
+  .biz-card p { color: var(--muted); font-size: 0.85em; line-height: 1.5; }
+  .biz-card .tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+  }
+
+  /* ===== PLANS DEEP DIVE ===== */
+  .plan-section {
+    margin-bottom: 48px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #2a2a5a;
+  }
+  .plan-header {
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .plan-header.bronze-h { background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(205,127,50,0.05)); }
+  .plan-header.silver-h { background: linear-gradient(135deg, rgba(168,169,173,0.15), rgba(168,169,173,0.05)); }
+  .plan-header.gold-h { background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)); }
+  .plan-header.emerald-h { background: linear-gradient(135deg, rgba(80,200,120,0.15), rgba(80,200,120,0.05)); }
+  
+  .plan-header .plan-icon { font-size: 2.5em; }
+  .plan-header .plan-info { flex: 1; }
+  .plan-header .plan-name { font-size: 1.5em; font-weight: 800; }
+  .plan-header .plan-tagline { color: var(--muted); font-size: 0.9em; }
+  .plan-header .plan-pricing {
+    text-align: right;
+  }
+  .plan-header .plan-pricing .big-price {
+    font-size: 2.2em;
+    font-weight: 900;
+  }
+  .plan-header .plan-pricing .big-price span {
+    font-size: 0.35em;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .plan-header .plan-pricing .cycle-options {
+    font-size: 0.75em;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .plan-header .plan-pricing .cycle-options strong {
+    color: #fff;
+  }
+  .popular-tag {
+    background: var(--accent2);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .plan-body {
+    background: var(--card);
+    padding: 28px 32px;
+  }
+  .plan-body .best-for {
+    display: inline-block;
+    background: rgba(108,92,231,0.15);
+    color: var(--accent);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px 32px;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .feature-item .fi-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    font-weight: 700;
+  }
+  .feature-item .fi-icon.yes { background: rgba(0,214,114,0.15); color: #00d672; }
+  .feature-item .fi-icon.no { background: rgba(255,255,255,0.05); color: #555; }
+  .feature-item .fi-text { font-size: 0.9em; }
+  .feature-item .fi-text .fi-label { font-weight: 500; }
+  .feature-item .fi-text .fi-desc { color: var(--muted); font-size: 0.82em; }
+  .feature-item.disabled { opacity: 0.35; }
+
+  .plan-limits {
+    margin-top: 20px;
+    background: var(--card2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .plan-limit-item {
+    text-align: center;
+    padding: 8px;
+  }
+  .plan-limit-item .limit-val {
+    font-size: 1.6em;
+    font-weight: 800;
+  }
+  .plan-limit-item .limit-label {
+    font-size: 0.75em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table-wrap {
+    overflow-x: auto;
+    margin-top: 24px;
+    border-radius: 16px;
+    border: 1px solid #2a2a5a;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    min-width: 700px;
+  }
+  .compare-table thead th {
+    background: var(--card2);
+    padding: 14px 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9em;
+    border-bottom: 2px solid #2a2a5a;
+    position: sticky;
+    top: 0;
+  }
+  .compare-table thead th:first-child {
+    text-align: left;
+    padding-left: 20px;
+  }
+  .compare-table tbody td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .compare-table tbody td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    color: #ccc;
+    font-weight: 500;
+  }
+  .compare-table tbody tr:hover { background: rgba(108,92,231,0.05); }
+  .compare-table .cat-row td {
+    background: rgba(108,92,231,0.08);
+    font-weight: 700;
+    color: var(--accent);
+    padding: 10px 12px;
+    text-align: left;
+    padding-left: 20px;
+  }
+  .compare-table .cat-row td span { color: var(--muted); font-weight: 400; font-size: 0.9em; }
+  .yes-cell { color: #00d672; font-weight: 700; }
+  .no-cell { color: #444; }
+  .val-cell { color: #ccc; font-weight: 600; }
+  .th-bronze { color: var(--bronze) !important; }
+  .th-silver { color: var(--silver) !important; }
+  .th-gold { color: var(--gold) !important; }
+  .th-emerald { color: var(--emerald) !important; }
+
+  /* ===== BILLING TOGGLE ===== */
+  .billing-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card);
+    border-radius: 20px;
+    margin-bottom: 48px;
+    border: 1px solid #2a2a5a;
+  }
+  .billing-toggle {
+    display: inline-flex;
+    background: var(--dark);
+    border-radius: 50px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .billing-toggle button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    color: var(--muted);
+    font-family: inherit;
+  }
+  .billing-toggle button.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+  }
+  .billing-toggle .save-pill {
+    font-size: 0.65em;
+    background: #00d672;
+    color: #000;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .billing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .billing-card {
+    background: var(--card2);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid #2a2a5a;
+    transition: 0.3s;
+  }
+  .billing-card:hover { border-color: var(--accent); }
+  .billing-card .bc-icon { font-size: 1.8em; margin-bottom: 8px; }
+  .billing-card .bc-name { font-weight: 700; margin-bottom: 12px; }
+  .billing-card .bc-price {
+    font-size: 2.4em;
+    font-weight: 900;
+  }
+  .billing-card .bc-price span { font-size: 0.35em; color: var(--muted); font-weight: 400; }
+  .billing-card .bc-total { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+  .billing-card .bc-save {
+    display: inline-block;
+    background: rgba(0,214,114,0.15);
+    color: #00d672;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .billing-card.featured { border-color: var(--accent); box-shadow: 0 0 30px rgba(108,92,231,0.2); }
+
+  /* ===== FAQ ===== */
+  .faq-item {
+    background: var(--card);
+    border: 1px solid #2a2a5a;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+  }
+  .faq-q:hover { background: rgba(108,92,231,0.05); }
+  .faq-q .arrow { transition: 0.3s; font-size: 0.8em; color: var(--muted); }
+  .faq-a {
+    padding: 0 20px 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    display: none;
+    font-size: 0.92em;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(233,69,96,0.1));
+    border-radius: 24px;
+    margin: 40px 0;
+    border: 1px solid #2a2a5a;
+  }
+  .cta-section h2 { font-size: 2em; font-weight: 800; margin-bottom: 8px; }
+  .cta-section p { color: var(--muted); margin-bottom: 24px; }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .cta-btn:hover { transform: scale(1.05); transition: 0.2s; }
+  .cta-contact {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cta-contact a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05em;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-size: 0.85em;
+    border-top: 1px solid #2a2a5a;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: #fff; color: #111; }
+    .cover { background: linear-gradient(135deg, #f0f0ff, #fff); min-height: auto; padding: 60px 20px; }
+    .cover h1 { -webkit-text-fill-color: #222; background: none; }
+    .plan-section, .billing-card, .biz-card, .faq-item, .billing-section { 
+      background: #fff; border-color: #ddd; 
+    }
+    .plan-body, .plan-header { background: #f9f9f9; }
+    .plan-section { break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    .cover h1 { font-size: 2em; }
+    .cover-price-chip { min-width: 100px; padding: 10px 14px; }
+    .plan-header { flex-direction: column; text-align: center; }
+    .plan-header .plan-pricing { text-align: center; }
+    .features-grid { grid-template-columns: 1fr; }
+    .billing-cards { grid-template-columns: 1fr 1fr; }
+    .section-title { font-size: 1.5em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge">📱 Works on any phone, tablet or laptop</div>
+  <div class="cover-logo">🚀</div>
+  <h1>SmartPOS</h1>
+  <h2>Complete POS & CRM system for restaurants, cafés, snooker clubs, gaming lounges & more — starting at just ₹13/day</h2>
+  
+  <div class="cover-prices">
+    <div class="cover-price-chip bronze">
+      <div class="icon">🥉</div>
+      <div class="name">Bronze</div>
+      <div class="price">₹399<span>/mo</span></div>
+    </div>
+    <div class="cover-price-chip silver">
+      <div class="icon">🥈</div>
+      <div class="name">Silver</div>
+      <div class="price">₹699<span>/mo</span></div>
+    </div>
+    <div class="cover-price-chip gold">
+      <div class="icon">🥇</div>
+      <div class="name">Gold</div>
+      <div class="price">₹999<span>/mo</span></div>
+    </div>
+    <div class="cover-price-chip emerald">
+      <div class="icon">💎</div>
+      <div class="name">Emerald</div>
+      <div class="price">₹1,499<span>/mo</span></div>
+    </div>
+  </div>
+
+  <button class="cover-cta" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Explore Plans ↓</button>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== WHO IS THIS FOR ==================== -->
+<div class="section">
+  <div class="section-title">🏪 Built for Your Business</div>
+  <div class="section-subtitle">One system, every business type. Customized features for exactly what you need.</div>
+
+  <div class="biz-grid">
+    <div class="biz-card">
+      <div class="emoji">🍽️</div>
+      <h3>Restaurants</h3>
+      <p>Kitchen display, QR ordering, delivery partners, GST billing, vendor management, recipe-based stock</p>
+      <span class="tag" style="background:rgba(212,175,55,0.15);color:var(--gold);">Best: Gold</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">☕</div>
+      <h3>Cafés & Bakeries</h3>
+      <p>Custom orders, loyalty points, subscriptions, QR ordering, half plates, takeaway-first billing</p>
+      <span class="tag" style="background:rgba(168,169,173,0.15);color:var(--silver);">Best: Silver</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">🎱</div>
+      <h3>Snooker & Pool Clubs</h3>
+      <p>Hourly table billing, auto-timers, membership cards, advance booking, snacks counter</p>
+      <span class="tag" style="background:rgba(212,175,55,0.15);color:var(--gold);">Best: Gold</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">🎮</div>
+      <h3>Gaming Cafés & VR Zones</h3>
+      <p>Station timers, wallet top-up, tournament management, game library, hourly + item billing</p>
+      <span class="tag" style="background:rgba(80,200,120,0.15);color:var(--emerald);">Best: Emerald</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">🍺</div>
+      <h3>Pubs & Bars</h3>
+      <p>Happy hour pricing, tab management, mix recipe tracking, liquor inventory, staff tips</p>
+      <span class="tag" style="background:rgba(212,175,55,0.15);color:var(--gold);">Best: Gold</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">🏪</div>
+      <h3>Retail & Kirana</h3>
+      <p>Barcode billing, wholesale/retail pricing, purchase orders, supplier ledger, fast checkout</p>
+      <span class="tag" style="background:rgba(168,169,173,0.15);color:var(--silver);">Best: Silver</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">🧁</div>
+      <h3>Cloud Kitchens</h3>
+      <p>Delivery-first billing, aggregator integration, prep time tracking, multi-brand menu</p>
+      <span class="tag" style="background:rgba(212,175,55,0.15);color:var(--gold);">Best: Gold</span>
+    </div>
+    <div class="biz-card">
+      <div class="emoji">💈</div>
+      <h3>Salons & Spas</h3>
+      <p>Appointment booking, service billing, membership packages, therapist payroll, walk-in queue</p>
+      <span class="tag" style="background:rgba(168,169,173,0.15);color:var(--silver);">Best: Silver</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== BILLING OPTIONS ==================== -->
+<div class="section">
+  <div class="section-title">💳 Choose Your Billing Cycle</div>
+  <div class="section-subtitle">The longer you commit, the more you save. All plans include 7-day free trial.</div>
+
+  <div class="billing-section">
+    <div class="billing-toggle" id="billingToggle">
+      <button class="active" onclick="setCycle('monthly', this)">Monthly</button>
+      <button onclick="setCycle('6mo', this)">6 Months <span class="save-pill">10% off</span></button>
+      <button onclick="setCycle('yearly', this)">Yearly <span class="save-pill">20% off</span></button>
+    </div>
+
+    <div class="billing-cards" id="billingCards">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== PLANS DEEP DIVE ==================== -->
+<div class="section" id="plans">
+  <div class="section-title">📦 What You Get in Each Plan</div>
+  <div class="section-subtitle">Every plan includes our core billing engine. Higher tiers unlock powerful business tools.</div>
+
+  <!-- ===== BRONZE ===== -->
+  <div class="plan-section">
+    <div class="plan-header bronze-h">
+      <div class="plan-icon">🥉</div>
+      <div class="plan-info">
+        <div class="plan-name">Bronze</div>
+        <div class="plan-tagline">Get Started — perfect for small setups & single-operator businesses</div>
+      </div>
+      <div class="plan-pricing">
+        <div class="big-price" style="color:var(--bronze)">₹399<span>/mo</span></div>
+        <div class="cycle-options">6mo: <strong>₹360/mo</strong> · Yearly: <strong>₹320/mo</strong></div>
+      </div>
+    </div>
+    <div class="plan-body">
+      <div class="best-for">✨ Best for: Small dhabas, single-counter takeaway joints, solo-run cafés</div>
+
+      <div class="plan-limits">
+        <div class="plan-limit-item">
+          <div class="limit-val">1</div>
+          <div class="limit-label">Device</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">50</div>
+          <div class="limit-label">Menu Items</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">5</div>
+          <div class="limit-label">Tables / Stations</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">1</div>
+          <div class="limit-label">User Login</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px"></div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Billing & Invoicing</div>
+            <div class="fi-desc">Create bills with Cash, UPI & Card payment modes</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Menu Management</div>
+            <div class="fi-desc">Add, edit, delete items with categories & subcategories</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Day Book</div>
+            <div class="fi-desc">Open/close day, track cash in hand vs. system total</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Daily Sales Reports</div>
+            <div class="fi-desc">See today's total bills, revenue & payment split</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">80mm Thermal Printing</div>
+            <div class="fi-desc">Print bills on 58mm/80mm thermal printers via browser or RawBT</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Offline Mode</div>
+            <div class="fi-desc">Works without internet — bills saved locally, auto-sync when online</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Discounts</div>
+            <div class="fi-desc">Apply 5%/10%/15% or custom ₹ discounts on bills</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Business Info on Bills</div>
+            <div class="fi-desc">Restaurant name, address, phone, GSTIN, UPI QR printed on every bill</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Excel/CSV Menu Import</div>
+            <div class="fi-desc">Upload your menu from Excel — bulk add in seconds</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Takeaway Billing</div>
+            <div class="fi-desc">Mark bills as Dine-in or Takeaway</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Bill Reprint</div>
+            <div class="fi-desc">Reprint any past bill from today's history</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Data Backup (JSON)</div>
+            <div class="fi-desc">Export all your data as a backup file anytime</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Multi-device Sync</div>
+            <div class="fi-desc">Upgrade to Silver to sync across multiple devices</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">QR Self-Ordering</div>
+            <div class="fi-desc">Upgrade to Silver</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">CRM & Customer Database</div>
+            <div class="fi-desc">Upgrade to Silver</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Staff & Payroll</div>
+            <div class="fi-desc">Upgrade to Silver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SILVER ===== -->
+  <div class="plan-section">
+    <div class="plan-header silver-h">
+      <div class="plan-icon">🥈</div>
+      <div class="plan-info">
+        <div class="plan-name">Silver <span class="popular-tag">🔥 MOST POPULAR</span></div>
+        <div class="plan-tagline">Growing Business — multi-device sync, CRM & inventory</div>
+      </div>
+      <div class="plan-pricing">
+        <div class="big-price" style="color:var(--silver)">₹699<span>/mo</span></div>
+        <div class="cycle-options">6mo: <strong>₹630/mo</strong> · Yearly: <strong>₹560/mo</strong></div>
+      </div>
+    </div>
+    <div class="plan-body">
+      <div class="best-for">✨ Best for: Mid-size restaurants, cafés, retail shops, salons — any business with 2-3 staff</div>
+
+      <div class="plan-limits">
+        <div class="plan-limit-item">
+          <div class="limit-val">3</div>
+          <div class="limit-label">Devices</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">200</div>
+          <div class="limit-label">Menu Items</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">15</div>
+          <div class="limit-label">Tables / Stations</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">5</div>
+          <div class="limit-label">User Logins</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px"></div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Everything in Bronze, plus →</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔥 Real-time Multi-device Sync</div>
+            <div class="fi-desc">Firebase-powered — bills, menu, tables sync across all devices instantly</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📱 QR Self-Ordering</div>
+            <div class="fi-desc">Customers scan QR → see your menu → place order → you get instant alert</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">👥 Customer CRM</div>
+            <div class="fi-desc">Auto-save customer details on delivery orders, search by phone, order history</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">👤 Staff Management</div>
+            <div class="fi-desc">Add staff with roles, PIN login, daily attendance tracking</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📦 Inventory & Stock</div>
+            <div class="fi-desc">Track stock levels, set minimum alerts, know what's running low</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">💸 Expense Tracking</div>
+            <div class="fi-desc">Record daily expenses by category — rent, salary, gas, packaging & more</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📊 Monthly Reports + P&L</div>
+            <div class="fi-desc">Profit & Loss statement, item-wise sales, staff-wise sales, date range reports</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📤 Google Sheets Export</div>
+            <div class="fi-desc">One-click export bills, expenses, CRM to Google Sheets</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🛵 Delivery Mode</div>
+            <div class="fi-desc">Mark bills as Delivery with customer address auto-fill from CRM</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📤 Excel Customer Import</div>
+            <div class="fi-desc">Upload customer list from Excel/CSV — bulk add in seconds</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔔 Push Notifications</div>
+            <div class="fi-desc">Get browser alerts for new QR orders with sound notification</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Kitchen Display (KDS)</div>
+            <div class="fi-desc">Upgrade to Gold</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Delivery Partner Integration</div>
+            <div class="fi-desc">Upgrade to Gold</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">AI Business Assistant</div>
+            <div class="fi-desc">Upgrade to Gold</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Staff Payroll</div>
+            <div class="fi-desc">Upgrade to Gold</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GOLD ===== -->
+  <div class="plan-section">
+    <div class="plan-header gold-h">
+      <div class="plan-icon">🥇</div>
+      <div class="plan-info">
+        <div class="plan-name">Gold</div>
+        <div class="plan-tagline">Full Power — for serious businesses that want complete control</div>
+      </div>
+      <div class="plan-pricing">
+        <div class="big-price" style="color:var(--gold)">₹999<span>/mo</span></div>
+        <div class="cycle-options">6mo: <strong>₹900/mo</strong> · Yearly: <strong>₹800/mo</strong></div>
+      </div>
+    </div>
+    <div class="plan-body">
+      <div class="best-for">✨ Best for: Full-service restaurants, snooker clubs, pubs, cloud kitchens — businesses with kitchen + delivery</div>
+
+      <div class="plan-limits">
+        <div class="plan-limit-item">
+          <div class="limit-val">5</div>
+          <div class="limit-label">Devices</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">Menu Items</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">30</div>
+          <div class="limit-label">Tables / Stations</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">User Logins</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px"></div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Everything in Silver, plus →</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🍳 Kitchen Display System (KDS)</div>
+            <div class="fi-desc">Big screen in kitchen shows live orders — mark preparing → ready → done</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🛵 Delivery Partner Integration</div>
+            <div class="fi-desc">Rapido, Porter, Dunzo, Swiggy Genie, Borzo — customer picks, you get full details</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">💰 Staff Payroll</div>
+            <div class="fi-desc">Monthly salary, advance tracking, bonus, tips, overtime, deductions — full payroll</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🚚 Vendor / Supplier Management</div>
+            <div class="fi-desc">Track vendors, outstanding balances, purchase ledger, payment history</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🧠 Recipe-based Stock Deduction</div>
+            <div class="fi-desc">Link dishes to ingredients — when billed, stock auto-deducts. Know exact consumption.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🤖 AI Business Assistant</div>
+            <div class="fi-desc">Ask "What's my profit today?" or "Which items are low stock?" — AI answers instantly</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔐 Role-based Access (RBAC)</div>
+            <div class="fi-desc">Owner sees everything, Cashier can't edit menu, Waiter can't view reports — full control</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔄 Google Sheets 2-way Sync</div>
+            <div class="fi-desc">Edit menu from Sheets, auto-import. Bills auto-export nightly. Full 2-way sync.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🖼️ Branded QR Codes</div>
+            <div class="fi-desc">Custom QR codes for each table with your business name — print & laminate</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🖨️ KOT Printing</div>
+            <div class="fi-desc">Print Kitchen Order Tickets separately from customer bills — dual printer support</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">⚙️ RawBT Silent Printing</div>
+            <div class="fi-desc">Auto-print bills & KOTs without the print dialog — works via RawBT on Android</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔇 Voice Announcements</div>
+            <div class="fi-desc">"New order for Table 5!" — auto-announce in kitchen via Web Speech API</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📋 Complete Report Pack</div>
+            <div class="fi-desc">Business summary, day book, sales, staff-wise, P&L, purchase, money in/out, expense, party details, stock, item sale — 11 report types</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🗄️ Bill Archive</div>
+            <div class="fi-desc">Auto-archive old bills to keep app fast. Still searchable. Export anytime.</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">Multi-Branch Management</div>
+            <div class="fi-desc">Upgrade to Emerald</div>
+          </div>
+        </div>
+        <div class="feature-item disabled">
+          <div class="fi-icon no">✕</div>
+          <div class="fi-text">
+            <div class="fi-label">White Label & Custom Domain</div>
+            <div class="fi-desc">Upgrade to Emerald</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EMERALD ===== -->
+  <div class="plan-section">
+    <div class="plan-header emerald-h">
+      <div class="plan-icon">💎</div>
+      <div class="plan-info">
+        <div class="plan-name">Emerald</div>
+        <div class="plan-tagline">Enterprise — unlimited everything, white-label, multi-branch, full automation</div>
+      </div>
+      <div class="plan-pricing">
+        <div class="big-price" style="color:var(--emerald)">₹1,499<span>/mo</span></div>
+        <div class="cycle-options">6mo: <strong>₹1,350/mo</strong> · Yearly: <strong>₹1,200/mo</strong></div>
+      </div>
+    </div>
+    <div class="plan-body">
+      <div class="best-for">✨ Best for: Gaming lounges, multi-branch restaurants, large snooker clubs, businesses that want it ALL</div>
+
+      <div class="plan-limits">
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">Devices</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">Menu Items</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">Tables / Stations</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">∞</div>
+          <div class="limit-label">User Logins</div>
+        </div>
+        <div class="plan-limit-item">
+          <div class="limit-val">2+</div>
+          <div class="limit-label">Branches</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px"></div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">Everything in Gold, plus →</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🏢 Multi-Branch Management</div>
+            <div class="fi-desc">Manage 2+ locations from one dashboard — see each branch's sales, stock, staff separately</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🎨 White Label & Custom Domain</div>
+            <div class="fi-desc">Your brand, your logo, your domain (pos.yourrestaurant.com). No "SmartPOS" branding.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🧠 Full AI Insights & Predictions</div>
+            <div class="fi-desc">Sales forecasts, demand predictions, "order more chicken — weekend is coming" suggestions</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">💬 WhatsApp Bill Delivery</div>
+            <div class="fi-desc">Auto-send bill PDF + payment link on WhatsApp when customer settles</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📲 SMS Notifications</div>
+            <div class="fi-desc">Get SMS alerts for big orders, low stock, daily summary — never miss anything</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">⭐ Loyalty / Reward Points</div>
+            <div class="fi-desc">Customers earn points on every order. Redeem for discounts. Keeps them coming back!</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🏷️ Membership Cards</div>
+            <div class="fi-desc">Digital membership system — monthly/yearly memberships with exclusive pricing & perks</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📊 Advanced Analytics Dashboard</div>
+            <div class="fi-desc">Heatmaps, peak hours, item trends, customer lifetime value, churn prediction</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🔗 API & Webhook Access</div>
+            <div class="fi-desc">Connect to Tally, Zoho, or any accounting software. Build custom integrations.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📋 Google Sheets CRM Sync</div>
+            <div class="fi-desc">Full 2-way sync — manage customers from Sheets, auto-update in POS</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🕐 Hourly Billing & Timers</div>
+            <div class="fi-desc">For snooker tables, gaming stations — auto-start/stop timers, charge by the hour/minute</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">👛 Wallet & Top-up System</div>
+            <div class="fi-desc">Gaming cafés — customers load wallet, balance auto-deducts per hour of play</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🏆 Tournament Management</div>
+            <div class="fi-desc">Gaming lounges — create tournaments, track entry fees, prize pools, brackets</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">📅 Advance Booking / Reservations</div>
+            <div class="fi-desc">Customers book tables/stations in advance. Auto-reminders via WhatsApp/SMS.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🛡️ 99.5% Uptime SLA</div>
+            <div class="fi-desc">Guaranteed uptime with redundant systems. If it goes down, we fix it fast.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon yes">✓</div>
+          <div class="fi-text">
+            <div class="fi-label">🎯 Dedicated Support + On-site Setup + Training</div>
+            <div class="fi-desc">Priority phone line, 2-hour response, we come to your business, set up everything, train your staff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== COMPARISON TABLE ==================== -->
+<div class="section">
+  <div class="section-title">📊 Quick Comparison</div>
+  <div class="section-subtitle">See everything side-by-side at a glance</div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="th-bronze">🥉 Bronze</th>
+          <th class="th-silver">🥈 Silver</th>
+          <th class="th-gold">🥇 Gold</th>
+          <th class="th-emerald">💎 Emerald</th>
+        </tr>
+        <tr style="font-size:0.8em;color:var(--muted);">
+          <th></th>
+          <th class="th-bronze">₹399/mo</th>
+          <th class="th-silver">₹699/mo</th>
+          <th class="th-gold">₹999/mo</th>
+          <th class="th-emerald">₹1,499/mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cat-row"><td>📱 Devices & Limits</td></tr>
+        <tr><td>Devices</td><td class="val-cell">1</td><td class="val-cell">3</td><td class="val-cell">5</td><td class="val-cell">Unlimited</td></tr>
+        <tr><td>Menu Items</td><td class="val-cell">50</td><td class="val-cell">200</td><td class="val-cell">Unlimited</td><td class="val-cell">Unlimited</td></tr>
+        <tr><td>Tables / Stations</td><td class="val-cell">5</td><td class="val-cell">15</td><td class="val-cell">30</td><td class="val-cell">Unlimited</td></tr>
+        <tr><td>User Logins</td><td class="val-cell">1</td><td class="val-cell">5</td><td class="val-cell">Unlimited</td><td class="val-cell">Unlimited</td></tr>
+        <tr><td>Branches</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="val-cell">2+</td></tr>
+
+        <tr class="cat-row"><td>🧾 Billing & Orders</td></tr>
+        <tr><td>Billing (Cash/UPI/Card)</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Discounts (₹ & %)</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Split Payment</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Dine-in / Takeaway / Delivery</td><td class="val-cell">Dine + Takeaway</td><td class="val-cell">All 3</td><td class="val-cell">All 3</td><td class="val-cell">All 3</td></tr>
+        <tr><td>Hourly Billing & Timers</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Wallet & Top-up</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>📋 Menu & Kitchen</td></tr>
+        <tr><td>Menu Management</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Excel/CSV Import</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>AI Menu Photo Scan</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Kitchen Display (KDS)</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>KOT Printing</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>📱 Ordering & Delivery</td></tr>
+        <tr><td>QR Self-Ordering</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Delivery Partner Integration</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Advance Booking</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>📦 Inventory & Stock</td></tr>
+        <tr><td>Stock Levels & Alerts</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Recipe-based Auto-deduct</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>AI Reorder Suggestions</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Vendor / Supplier Management</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>👥 People & CRM</td></tr>
+        <tr><td>Customer CRM</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Staff List & Attendance</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Staff Payroll</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Role-based Access (RBAC)</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Loyalty / Reward Points</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Membership Cards</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>📊 Reports & Insights</td></tr>
+        <tr><td>Daily Sales Report</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Monthly + P&L</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Complete Report Pack (11 types)</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>AI Business Assistant</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Advanced Analytics & Predictions</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>🖨️ Hardware & Print</td></tr>
+        <tr><td>80mm Thermal Printing</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>RawBT Silent Printing</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Voice Announcements</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>☁️ Data & Sync</td></tr>
+        <tr><td>Offline Mode</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Real-time Multi-device Sync</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Google Sheets Export</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Google Sheets 2-way Sync</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>API / Webhook Access</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Data Backup (JSON)</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>🔔 Notifications</td></tr>
+        <tr><td>Browser Push Notifications</td><td class="no-cell">—</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td><td class="yes-cell">✓</td></tr>
+        <tr><td>WhatsApp Bill Delivery</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>SMS Notifications</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>🎮 Gaming & Snooker Extras</td></tr>
+        <tr><td>Hourly Table/Station Billing</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Auto-start/stop Timers</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Wallet Top-up System</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Tournament Management</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Wall-mounted Status Display</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>🏢 Business & Branding</td></tr>
+        <tr><td>Multi-Branch</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>White Label (Your Brand)</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+        <tr><td>Custom Domain</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="no-cell">—</td><td class="yes-cell">✓</td></tr>
+
+        <tr class="cat-row"><td>🛟 Support</td></tr>
+        <tr><td>Support Channel</td><td class="val-cell">WhatsApp</td><td class="val-cell">WA + Phone</td><td class="val-cell">WA + Phone + Video</td><td class="val-cell">Dedicated Line</td></tr>
+        <tr><td>Response Time</td><td class="val-cell">48 hours</td><td class="val-cell">24 hours</td><td class="val-cell">12 hours</td><td class="val-cell">2 hours</td></tr>
+        <tr><td>Setup Assistance</td><td class="val-cell">Self (video guide)</td><td class="val-cell">Remote setup</td><td class="val-cell">On-site setup</td><td class="val-cell">On-site + Training</td></tr>
+        <tr><td>Free Trial</td><td class="yes-cell">7 days</td><td class="yes-cell">7 days</td><td class="yes-cell">7 days</td><td class="yes-cell">7 days</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== FAQ ==================== -->
+<div class="section">
+  <div class="section-title">❓ Frequently Asked Questions</div>
+  <div class="section-subtitle">Everything you need to know before you start</div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need to buy any expensive hardware? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>No!</strong> SmartPOS works on any phone, tablet, or laptop you already own. Just open it in Chrome. If you want thermal bill printing, you can buy a 58mm/80mm USB or Bluetooth thermal printer on Amazon for ₹1,500-3,000 — that's the only optional hardware.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What if my internet goes down? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>It still works!</strong> All plans include offline mode. Bills, orders, and menu changes are saved on your device. When your internet comes back, everything auto-syncs to the cloud. You never lose a bill.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I upgrade or downgrade my plan anytime? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Yes!</strong> Upgrade anytime — new features activate instantly. Downgrade takes effect at the next billing cycle. No penalty, no lock-in. If you paid yearly, we'll adjust the remaining balance.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is there a free trial? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Yes — 7 days free on all plans!</strong> No credit card needed. Full features during trial. If you don't love it, you owe nothing. We'll even set it up for you and add your menu during the trial.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How does the 6-month and yearly billing work? <span class="arrow">▼</span></div>
+    <div class="faq-a">Pay upfront and save <strong>10% (6 months)</strong> or <strong>20% (yearly)</strong>. For example, Gold yearly = ₹9,600 (instead of ₹11,988 monthly) — you save ₹2,400! No surprises, no hidden fees, cancel anytime.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">My staff isn't tech-savvy. Is it easy to use? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Super easy!</strong> It's designed for waiters and cashiers, not tech people. Tap table → add items → settle bill. That's it. 5-minute training. Plus on Gold & Emerald, we come to your business and train your staff in person.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I use it on both my phone and laptop? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Yes!</strong> Silver and above support multiple devices with real-time sync. Your cashier uses the laptop, you monitor from your phone, the kitchen sees orders on a tablet — all synced live via Firebase.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What's the difference between Gold and Emerald? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Gold</strong> has everything a single-location business needs — KDS, delivery, payroll, AI assistant. <strong>Emerald</strong> adds multi-branch management, white-label branding, custom domain, WhatsApp/SMS notifications, loyalty programs, membership cards, hourly billing (snooker/gaming), wallet system, tournament management, API access, and dedicated priority support with on-site training.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is my business data safe? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>100%.</strong> All data is stored in Google Firebase (same security as Google uses). Encrypted in transit and at rest. Only your authorized users can access it. You can export everything anytime as backup. Google Sheets auto-backup available on Silver+.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">I run a snooker club — does it handle hourly billing? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Yes!</strong> Emerald plan includes auto-start/stop timers for each table, hourly billing with different rates per table type, pause/resume, and a live wall display showing all table statuses. Perfect for snooker clubs, pool halls, and gaming lounges.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I try before I buy? <span class="arrow">▼</span></div>
+    <div class="faq-a"><strong>Absolutely!</strong> Just call or WhatsApp us. We'll set up your POS with your menu, your tables, and your branding — all within 24 hours. Use it free for 7 days. No obligation. If you like it, choose your plan and continue. If not, no worries!</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== CTA ==================== -->
+<div class="section">
+  <div class="cta-section">
+    <h2>🚀 Start Your 7-Day Free Trial</h2>
+    <p>No credit card. No commitment. We'll set it up for you — ready by tomorrow.</p>
+    <button class="cta-btn" onclick="window.open('https://wa.me/918369940174?text=Hi!%20I%20want%20to%20try%20SmartPOS%20for%20my%20business','_blank')">💬 WhatsApp Us Now</button>
+    <div class="cta-contact">
+      <a href="tel:+918369940174">📞 +91-8369940174</a>
+      <a href="/cdn-cgi/l/email-protection#41322920282a292f2e202c20202f707201262c20282d6f222e2c">📧 <span class="__cf_email__" data-cfemail="91e2f9f0f8faf9fffef0fcf0f0ffa0a2d1f6fcf0f8fdbff2fefc">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <p>SmartPOS — Complete POS & CRM for every business</p>
+  <p style="margin-top:8px;">Works on any device · Offline ready · Real-time sync · Starting ₹13/day</p>
+  <p style="margin-top:16px; font-size:0.75em; color:#555;">© 2025 SmartPOS. All rights reserved. Prices are inclusive of all taxes. GST invoice available.</p>
+</div>
+
+<!-- ==================== JS ==================== -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Billing cycle toggle
+  const plans = [
+    { name: 'Bronze', icon: '🥉', monthly: 399, sixmo: 360, yearly: 320, color: 'var(--bronze)' },
+    { name: 'Silver', icon: '🥈', monthly: 699, sixmo: 630, yearly: 560, color: 'var(--silver)' },
+    { name: 'Gold',   icon: '🥇', monthly: 999, sixmo: 900, yearly: 800, color: 'var(--gold)' },
+    { name: 'Emerald',icon: '💎', monthly: 1499, sixmo: 1350, yearly: 1200, color: 'var(--emerald)', featured: true },
+  ];
+
+  let currentCycle = 'monthly';
+
+  function setCycle(cycle, btn) {
+    currentCycle = cycle;
+    document.querySelectorAll('.billing-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderBillingCards();
+  }
+
+  function renderBillingCards() {
+    const container = document.getElementById('billingCards');
+    container.innerHTML = plans.map(p => {
+      let price, total, save, cycleLabel;
+      if (currentCycle === 'monthly') {
+        price = p.monthly;
+        total = '';
+        save = '';
+        cycleLabel = '/mo';
+      } else if (currentCycle === '6mo') {
+        price = p.sixmo;
+        total = `₹${(p.sixmo * 6).toLocaleString('en-IN')} total`;
+        const saved = (p.monthly - p.sixmo) * 6;
+        save = `Save ₹${saved.toLocaleString('en-IN')}`;
+        cycleLabel = '/mo (6-mo plan)';
+      } else {
+        price = p.yearly;
+        total = `₹${(p.yearly * 12).toLocaleString('en-IN')} total`;
+        const saved = (p.monthly - p.yearly) * 12;
+        save = `Save ₹${saved.toLocaleString('en-IN')}`;
+        cycleLabel = '/mo (annual)';
+      }
+
+      return `
+        <div class="billing-card ${p.featured ? 'featured' : ''}">
+          <div class="bc-icon">${p.icon}</div>
+          <div class="bc-name">${p.name}</div>
+          <div class="bc-price" style="color:${p.color}">₹${price.toLocaleString('en-IN')}<span>${cycleLabel}</span></div>
+          ${total ? `<div class="bc-total">${total}</div>` : ''}
+          ${save ? `<div class="bc-save">${save}</div>` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  renderBillingCards();
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
